@@ -1,0 +1,19 @@
+<%%= form_for @<%= resource_name %> do |f| %>
+
+  <%%= card head: title do -%>
+    <%- columns.each do |column| -%>
+    <div class="control-group">
+      <%%= f.label :<%= column.name %>, class: 'col-form-label' %>
+      <div class="controls">
+        <%%= f.<%= column.field_type %> :<%= column.name %>, class: 'form-control' %>
+      </div>
+      <%%= f.error_span(:<%= column.name %>) %>
+    </div>
+    <%- end -%>
+  <%% end -%>
+
+  <%%= f.submit class: 'btn btn-primary' %>
+  <%%= link_to t("helpers.links.cancel"),
+            <%= controller_routing_path %>_path, class: 'btn btn-secondary' %>
+
+<%% end %>

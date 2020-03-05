@@ -1,0 +1,19 @@
+<%%= card head: t_operate_name("search") do %>
+  <%%= search_form_for([:admin, @q], html: {class: "form-inline label-110"}) do |f| %>
+    <div class="row col-md-11">
+    <%- columns.first(4).each do |column| -%>
+      <div class="col-md-3">
+        <%%= f.label :<%= column.name %> %>
+        <%%= f.search_field :<%= column.name %>_cont, class: 'form-control' %>
+      </div>
+    <%- end -%>
+    </div>
+    <div class="row margin-top-10 col-md-11">
+
+    </div>
+
+    <div class="col-md-1 pull-right">
+      <%%= f.submit class: "btn btn-sm btn-info" %>
+    </div>
+  <%% end -%>
+<%% end -%>
