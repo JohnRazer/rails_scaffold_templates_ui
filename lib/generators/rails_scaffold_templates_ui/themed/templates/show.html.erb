@@ -1,0 +1,23 @@
+<%%- model_class = <%= resource_name.classify %> -%>
+<%% set_title t('.title', default: model_class.model_name.human.titleize) %>
+
+<%%= card head: title do -%>
+
+  <dl>
+  <%- columns.each do |column| -%>
+    <dt><strong><%%= model_class.human_attribute_name(:<%= column.name %>) %>:</strong></dt>
+    <dd><%%= @<%= resource_name %>.<%= column.name %> %></dd>
+  <%- end -%>
+  </dl>
+
+<%% end -%>
+
+<%%= link_to t("helpers.links.back"),
+              <%= controller_routing_path %>_path, class: 'btn btn-secondary'  %>
+<%%= link_to t("helpers.links.edit"),
+              edit_<%= singular_controller_routing_path %>_path(@<%= resource_name %>), class: 'btn btn-default' %>
+<%%= link_to t("helpers.links.destroy"),
+              <%= singular_controller_routing_path %>_path(@<%= resource_name %>),
+              method: :delete,
+              data: { confirm: t("helpers.links.confirm") },
+              class: 'btn btn-danger' %>

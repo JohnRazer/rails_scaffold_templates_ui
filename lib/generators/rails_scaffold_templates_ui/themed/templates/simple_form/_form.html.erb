@@ -1,0 +1,15 @@
+<%%= simple_form_for([:admin, @<%= resource_name %>], html: { class: 'form-horizontal' }) do |f| %>
+
+  <%%= card head: title do -%>
+    <%- columns.each do |column| -%>
+    <div class="col-md-6">
+      <%%= f.<%= column.reference? ? :association : :input %> :<%= column.name %>, input_html: { class: 'form-control', placeholder: "<%= column.name %>" } %>
+    <div>
+    <%- end -%>
+  <%% end -%>
+  <div class="col-10">
+    <%%= f.submit class: 'btn btn-primary' %>
+    <%%= link_to t("helpers.links.cancel"),
+              <%= controller_routing_path %>_path, class: 'btn btn-secondary' %>
+  </div>
+<%% end %>
